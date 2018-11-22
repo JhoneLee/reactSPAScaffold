@@ -2,37 +2,38 @@
 * @file: 生产环境webpack配置文件
 * @Author: liyunjiao
 * @Date:   2018-05-14 15:45:20
-* @Last Modified by:   liyunjiao
-* @Last Modified time: 2018-05-14 15:46:32
+* @Last Modified by:   liyunjiao2048@163.com
+* @Last Modified time: 2018-11-22 15:18:03
 */
+
+// 当我们配置组件异步加载的时候，webpack会自动将异步加载的组件单独打包成js文件
+// 使用chunkhash 可以有效的将文件内容变动改名
 
 var path = require('path');
 var os = require('os');
 var webpack = require('webpack');
 var htmlWebpackPlugin = require('html-webpack-plugin');
-var cleanWebpackPlugin = require('clean-webpack-plugin');
+// var cleanWebpackPlugin = require('clean-webpack-plugin');
 var ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
+    // devtool: 'cheap-module-source-map',
     entry: {
         main: path.join(__dirname, '../src/entry.js'),
-        vendorReact: ['react','react-dom'],
-        vendorRedux:['redux','react-router-redux','react-redux','redux-thunk','redux-promise'],
-        vendorRouter:['react-router','react-router-dom']
+        // vendorReact: ['react','react-dom'],
+        // vendorRedux:['redux','react-router-redux','react-redux','redux-thunk','redux-promise'],
+        // vendorRouter:['react-router','react-router-dom']
     },
     output: {
         path: path.resolve(__dirname, '../dist/'),
-        filename: './src/js/[name].js',
+        filename: './js/[name].[chunkhash:8].js',
         publicPath: ''
     },
-    devServer: {
-        inline: true,
-        port: 3434
-    },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({
-            names: ['vendorReact','vendorRedux','vendorRouter','bundle'],
-            filename:'./src/js/[name].js'
-        }),
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     names: ['vendorReact','vendorRedux','vendorRouter'],
+        //     filename:'./js/[name].[chunkhash:8].js'
+        // }),
         new htmlWebpackPlugin({
             title: 'hehe',
             template: path.join(__dirname, '../index.html'),
@@ -50,7 +51,8 @@ module.exports = {
                 }
             }
         }),
-        new cleanWebpackPlugin([path.resolve(__dirname, '../dist')]) // 清理打包目录
+        // new cleanWebpackPlugin([path.resolve(__dirname, '../dist')]) // 清理打包目录
+        new ExtractTextPlugin("css/less.[chunkhash:8].css")
     ],
     resolve: {
         extensions: ['.js', '.jsx', '.react']
@@ -92,13 +94,16 @@ module.exports = {
                 }]
             }, {
                 test: /\.less$/,
-                use: [{
-                    loader: 'style-loader'
-                }, {
-                    loader: 'css-loader'
-                }, {
-                    loader: 'less-loader'
-                }]
+                use:ExtractTextPlugin.extract({
+                    fallback:'style-loader',
+                    use:[
+                        {
+                            loader:'css-loader'
+                        },{
+                            loader:'less-loader'
+                        }
+                    ]
+                })
             }
         ]
     }

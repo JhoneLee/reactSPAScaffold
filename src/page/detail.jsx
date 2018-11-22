@@ -21,7 +21,7 @@ class Detail extends Component{
             params:{},
             pathParams:[id],
             success(res){
-                message.success('详情请求成功');
+                message.success('详情请求成功!!');
                 console.log(res);
             },
             error(e){
