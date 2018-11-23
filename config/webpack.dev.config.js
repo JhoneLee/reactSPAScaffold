@@ -2,16 +2,16 @@
 * @file: dev环境webpack配置文件
 * @Author: liyunjiao
 * @Date:   2018-05-14 15:43:21
-* @Last Modified by:   liyunjiao
-* @Last Modified time: 2018-05-16 13:40:42
+* @Last Modified by:   liyunjiao2048@163.com
+* @Last Modified time: 2018-11-23 11:42:28
 */
 
 var path = require('path');
 var webpack = require('webpack');
 var htmlWebpackPlugin = require('html-webpack-plugin');
-var cleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
     devtool: '#eval-source-map',
+    mode:'development',
     entry: {
         main: [
             'react-hot-loader/patch',
@@ -30,19 +30,14 @@ module.exports = {
         host: '0.0.0.0'
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'bundle',
-            filename: './src/js/bundle.js'
-        }),
         new htmlWebpackPlugin({
             title: 'hehe',
             template: path.join(__dirname, '../index.html'),
             filename: './index.html'
-        }),
-        new cleanWebpackPlugin([path.resolve(__dirname, '../dist')]) // 清理打包目录
+        })
     ],
     resolve: {
-        extensions: ['.js', '.jsx', '.react']
+        extensions: ['.js', '.jsx']
     },
     module: {
         rules: [

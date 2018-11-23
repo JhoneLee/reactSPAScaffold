@@ -1,15 +1,21 @@
 {
   "presets": [
-    ["latest", {"modules": false}],
-    ["react"],
-    ["stage-0"]
+    ["@babel/env"],
+    ["@babel/react"]
   ],
   "plugins": [
     "react-hot-loader/babel",
-    "add-module-exports",
     ["import", { 
         "libraryName": "antd",
         "style": "css" 
-    }]
+    }],
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-proposal-json-strings",
+    ["@babel/plugin-proposal-class-properties", { "loose": false }],
+    "@babel/plugin-syntax-import-meta",
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-proposal-export-namespace-from",
+    "@babel/plugin-syntax-export-default-from",
+    ["@babel/plugin-proposal-object-rest-spread",{ "loose": true, "useBuiltIns": true }]
   ]
 }
