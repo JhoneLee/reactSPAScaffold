@@ -1,11 +1,12 @@
 import React,{Component} from 'react';
 import { Layout,Input,Icon,Button,message,Spin } from 'antd';
 import {connect} from 'react-redux';
-import {homeReceive} from '../action';
+import Action from '../action';
 import mkFetchJsonp from '../common/fetchJsonp';
 import HomeDataItem from '../components/HomeDataItem';
 import '../less/home.less';
 import img from '../image/loading.gif';
+const {homeReceive} = Action;
 const { Header, Content} = Layout;
 const fetchApis = mkFetchJsonp(homeReceive);
 class Home extends Component{
@@ -32,17 +33,16 @@ class Home extends Component{
     
     render(){
         let {getData,stateData} = this.props;
-        console.log(this.props);
         let {requestPosts} = stateData;
         let flag = requestPosts === 'hide'?false:true;
         let {subjects,total} = stateData.homeList;
         let list = [];
-        list.push(subjects.map((e)=>{
-            return (<HomeDataItem data={e}/>)
+        list.push(subjects.map((e,i)=>{
+            return (<HomeDataItem key={`idx-${i}`} data={e}/>)
         }));
         return (
             <Layout className="home-page">
-                <Spin tip="数据加载中..." spinning={flag}>
+                <Spin tip="数据正在加载中..." spinning={flag}>
                     <Content className="main">
                         <Layout>
                             <Content className="home-center">

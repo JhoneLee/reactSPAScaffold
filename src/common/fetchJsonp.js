@@ -2,19 +2,17 @@
 * @file: fetch-jsonp 获取数据
 * @Author: liyunjiao
 * @Date:   2018-05-15 15:53:40
-* @Last Modified by:   liyunjiao
-* @Last Modified time: 2018-05-16 11:51:11
+* @Last Modified by:   liyunjiao2048@163.com
+* @Last Modified time: 2018-11-23 14:05:11
 */
 
 import fetchJsonp from 'fetch-jsonp';
 import {judgeType,serialize} from '../util/tools';
 import { message,Modal } from 'antd';
 import {root} from '../util/domain';
-import {requestPosts} from '../action';
+import Action from '../action';
 const BASE = root;
-
-
-
+let {requestPosts} = Action;
 /**
  * ------------------------------------------------------------------
  * fetchApis opt参数 (string/object)
@@ -29,6 +27,7 @@ const BASE = root;
  * ------------------------------------------------------------------
  */
 export default function mkFetchJsonp(receive){
+    console.log(receive);
     return function fetchJsonpApis(opt) {
         let type = judgeType(opt);
         let {api,params,pathParams,success,error,disconnect,loading,timeout} = opt;

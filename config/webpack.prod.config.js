@@ -3,7 +3,7 @@
 * @Author: liyunjiao
 * @Date:   2018-05-14 15:45:20
 * @Last Modified by:   liyunjiao2048@163.com
-* @Last Modified time: 2018-11-22 15:18:03
+* @Last Modified time: 2018-11-23 15:00:14
 */
 
 // 当我们配置组件异步加载的时候，webpack会自动将异步加载的组件单独打包成js文件
@@ -13,11 +13,11 @@ var path = require('path');
 var os = require('os');
 var webpack = require('webpack');
 var htmlWebpackPlugin = require('html-webpack-plugin');
-// var cleanWebpackPlugin = require('clean-webpack-plugin');
-var ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 module.exports = {
-    // devtool: 'cheap-module-source-map',
+    devtool: false,
+    mode:'production',
     entry: {
         main: path.join(__dirname, '../src/entry.js'),
         // vendorReact: ['react','react-dom'],
@@ -30,32 +30,31 @@ module.exports = {
         publicPath: ''
     },
     plugins: [
-        // new webpack.optimize.CommonsChunkPlugin({
-        //     names: ['vendorReact','vendorRedux','vendorRouter'],
-        //     filename:'./js/[name].[chunkhash:8].js'
-        // }),
         new htmlWebpackPlugin({
             title: 'hehe',
             template: path.join(__dirname, '../index.html'),
-            filename: './index.html'
+            filename: './index.html',
+            chunks:['main','vendorReact','vendorRedux','vendorRouter']
         }),
-        new ParallelUglifyPlugin({
-            cacheDir: '.cache/',
-            workers:os.cpus().length,
-            uglifyJS:{
-                output: {
-                    comments: false
-                },
-                compress: {
-                    warnings: false
-                }
-            }
-        }),
-        // new cleanWebpackPlugin([path.resolve(__dirname, '../dist')]) // 清理打包目录
-        new ExtractTextPlugin("css/less.[chunkhash:8].css")
+        new ExtractTextPlugin("css/less.[chunkhash:8].css"),
+        new BundleAnalyzerPlugin()
     ],
     resolve: {
         extensions: ['.js', '.jsx', '.react']
+    },
+    optimization: {
+        runtimeChunk: {
+            name: "manifest"
+        },
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: "vendor",
+                    chunks: "all"
+                }
+            }
+        }
     },
     module: {
         rules: [

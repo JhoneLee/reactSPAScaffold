@@ -5,17 +5,10 @@
   ],
   "plugins": [
     "react-hot-loader/babel",
-    ["import", { 
-        "libraryName": "antd",
-        "style": "css" 
-    }],
-    "@babel/plugin-transform-runtime",
-    "@babel/plugin-proposal-json-strings",
-    ["@babel/plugin-proposal-class-properties", { "loose": false }],
-    "@babel/plugin-syntax-import-meta",
+    ["import", { "libraryName": "antd", "style": "css" }],
+    ["import", { "libraryName": "antd", "libraryDirectory": "lib"}, "ant"],
     "@babel/plugin-syntax-dynamic-import",
-    "@babel/plugin-proposal-export-namespace-from",
-    "@babel/plugin-syntax-export-default-from",
-    ["@babel/plugin-proposal-object-rest-spread",{ "loose": true, "useBuiltIns": true }]
+    ["@babel/plugin-proposal-object-rest-spread",{ "loose": true, "useBuiltIns": true }],
+    "@babel/plugin-transform-modules-commonjs"
   ]
 }

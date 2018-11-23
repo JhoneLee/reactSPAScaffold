@@ -3,9 +3,9 @@ import {Link} from 'react-router-dom';
 const HomeDataItem = ({data,...props}) => {
     let {images,genres,title,id} = data;
     let gens = [];
-    gens.push(genres.map((e)=>{
+    gens.push(genres.map((e,i)=>{
         return (
-            <li>{e}</li>
+            <li key={`ldx-${i}`}>{e}</li>
         );
     }));
     return (<li className="data-item">

@@ -1,10 +1,11 @@
 import React,{Component} from 'react';
 import { Layout,Input,Icon,Button,message,Spin } from 'antd';
 import {connect} from 'react-redux';
-import {detailReceive} from '../action';
+import Action from '../action';
 import mkFetchJsonp from '../common/fetchJsonp';
 // import '../less/home.less';
 import img from '../image/loading.gif';
+const {detailReceive} = Action;
 const { Header, Content} = Layout;
 const fetchApis = mkFetchJsonp(detailReceive);
 class Detail extends Component{
