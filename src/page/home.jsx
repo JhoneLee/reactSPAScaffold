@@ -16,6 +16,10 @@ class Home extends Component{
     
     componentWillMount(){
         let _this = this;
+        import('../common/asyncMod').then(res=>{
+            console.log(res);
+            res.default();
+        });
         this.props.getData({
             api:'movie/in_theaters',
             params:{},
