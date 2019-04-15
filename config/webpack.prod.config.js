@@ -3,7 +3,7 @@
 * @Author: liyunjiao
 * @Date:   2018-05-14 15:45:20
 * @Last Modified by:   liyunjiao2048@163.com
-* @Last Modified time: 2018-11-23 15:00:14
+* @Last Modified time: 2019-04-15 15:11:17
 */
 
 // 当我们配置组件异步加载的时候，webpack会自动将异步加载的组件单独打包成js文件
@@ -40,7 +40,10 @@ module.exports = {
         new BundleAnalyzerPlugin()
     ],
     resolve: {
-        extensions: ['.js', '.jsx', '.react']
+        extensions: ['.js', '.jsx', '.react'],
+        alias: {
+            Components: path.resolve(__dirname, '../src/components/')
+        }
     },
     optimization: {
         runtimeChunk: {

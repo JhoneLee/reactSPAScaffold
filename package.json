@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --config ./config/webpack.dev.config.js",
-    "prod": "cross-env NODE_ENV='\"production\"' rm -rf ./dist && webpack --config ./config/webpack.prod.config.js"
+    "prod": "cross-env NODE_ENV='\"production\"' rm -rf ./dist && webpack --config ./config/webpack.prod.config.js",
+    "test": "jest --config ./config/jest.config.js"
   },
   "repository": {
     "type": "git",
@@ -26,10 +27,13 @@
     "babel-plugin-import": "^1.11.0",
     "cross-env": "^5.2.0",
     "css-loader": "^1.0.1",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^2.0.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.7.1",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
     "pre-commit": "^1.2.2",

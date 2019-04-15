@@ -2,8 +2,8 @@
 * @file: 工具函数集锦
 * @Author: liyunjiao
 * @Date:   2018-05-15 14:10:21
-* @Last Modified by:   liyunjiao
-* @Last Modified time: 2018-05-15 14:13:11
+* @Last Modified by:   liyunjiao2048@163.com
+* @Last Modified time: 2019-04-15 14:07:05
 */
 
 /**
@@ -32,4 +32,8 @@ export function serialize(obj) {
         result.push(encodeURIComponent(k) + '=' + encodeURIComponent(obj[k]));
     }
     return result.join('&');
+}
+
+export function sum(a,b){
+    return a+b;
 }
