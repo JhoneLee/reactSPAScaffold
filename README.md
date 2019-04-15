@@ -1,6 +1,6 @@
 # react SPA 脚手架
 
-
+增加jest单元测试
 ## 安装步骤
 
 npm install
