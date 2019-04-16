@@ -2,12 +2,13 @@
 * @file: fetch封装
 * @Author: liyunjiao
 * @Date:   2018-05-15 14:13:21
-* @Last Modified by:   liyunjiao
-* @Last Modified time: 2018-05-15 15:39:26
+* @Last Modified by:   liyunjiao2048@163.com
+* @Last Modified time: 2019-04-16 16:42:23
 */
 
 import {serialize} from './tools';
 import URLSearchParams from 'url-search-params';
+import fetch from 'isomorphic-fetch';
 /**
  * ------------------------------------------------------------------
  * fetchUtil opt参数

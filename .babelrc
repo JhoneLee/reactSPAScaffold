@@ -9,6 +9,8 @@
     ["import", { "libraryName": "antd", "libraryDirectory": "lib"}, "ant"],
     "@babel/plugin-syntax-dynamic-import",
     ["@babel/plugin-proposal-object-rest-spread",{ "loose": true, "useBuiltIns": true }],
-    "@babel/plugin-transform-modules-commonjs"
+    "@babel/plugin-transform-modules-commonjs",
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-transform-async-to-generator"
   ]
 }
