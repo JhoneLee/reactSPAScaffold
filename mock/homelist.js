@@ -1,12 +1,12 @@
 /*
 * @Author: liyunjiao2048@163.com
 * @Date:   2019-04-16 15:08:11
-* @Last Modified by:   liyunjiao2048@163.com
-* @Last Modified time: 2019-04-16 15:08:27
+* @Last Modified by:   liyunjiao
+* @Last Modified time: 2019-04-25 16:23:10
 */
 
 export default {
-    status:0,
+    "status":0,
     "count": 20,
     "start": 0,
     "total": 37,

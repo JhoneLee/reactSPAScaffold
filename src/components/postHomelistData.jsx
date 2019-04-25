@@ -12,17 +12,14 @@ class PostHomeListData extends React.Component {
             url:'http://127.0.0.1:8686/api/regtech/homelist',
             method:'post',
         })
-        .then(res=>res.json())
+        .then(res=>res.text())
         .then((res)=>{
-            console.log(res);
-            let data = res;
+            let data = res?JSON.parse(res):{};
             if(data.status==0){
                 let homelist = data.subjects;
                 this.setState({
                     homelist
                 });
-            } else {
-                // return null;
             }
         })
         .catch(e=>{
@@ -58,14 +55,14 @@ class PostHomeListData extends React.Component {
     // }
     render(){
         let {homelist} = this.state;
-        let arr = homelist.map(e=>{
+        let arr = homelist.map((e,i)=>{
             return (
-                <li className="data-item">
+                <li key={`li${i}`} className="data-item">
                     <a href="javascript:;">{e.title}</a>
                 </li>
             );
         });
-         console.log(arr);
+        // console.log('mmmmmmm',arr);
         return (
             <div>
                 <ul>{arr}</ul>
