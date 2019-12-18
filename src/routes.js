@@ -3,19 +3,24 @@
 * @Author: liyunjiao
 * @Date:   2018-05-14 15:15:42
 * @Last Modified by:   liyunjiao2048@163.com
-* @Last Modified time: 2019-04-16 17:01:21
+* @Last Modified time: 2019-12-18 13:42:29
 */
 
 import Home from './page/home';
 // import Detail from './page/detail';
 // import Layout from './page/layout';
 import asyncComponent from './components/AsyncComponent';
+import Test from './page/test';
 const Detail = asyncComponent(()=>import('./page/detail.jsx'));
 const Layout = asyncComponent(()=>import('./page/layout.jsx'));
 const routes = [{
     path: '/home',
     component: Home,
     exact: true
+},{
+    path:'/test',
+    component:Test,
+    exact:true
 },{
     path: '/page',
     component: Layout,

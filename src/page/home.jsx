@@ -6,6 +6,7 @@ import mkFetchJsonp from '../common/fetchJsonp';
 import HomeDataItem from '../components/HomeDataItem';
 import '../less/home.less';
 import img from '../image/loading.gif';
+
 const {homeReceive} = Action;
 const { Header, Content} = Layout;
 const fetchApis = mkFetchJsonp(homeReceive);

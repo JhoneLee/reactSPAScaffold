@@ -3,7 +3,7 @@
 * @Author: liyunjiao
 * @Date:   2018-05-14 15:43:21
 * @Last Modified by:   liyunjiao2048@163.com
-* @Last Modified time: 2019-11-20 14:21:12
+* @Last Modified time: 2019-12-18 10:41:30
 */
 
 var path = require('path');
@@ -31,8 +31,7 @@ module.exports = {
     },
     plugins: [
         new htmlWebpackPlugin({
-            title: 'hehe',
-            template: path.join(__dirname, '../index.html'),
+            template: path.join(__dirname, '../index-dev.html'),
             filename: './index.html'
         }),
         new webpack.DefinePlugin({
