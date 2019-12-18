@@ -18,3 +18,8 @@ npm install
 > * 完全的前后端分离
 > * 引入redux 及 react-router
 > * 使用fetch请求数据
+
+------
+## webpack配置更新
+>* 使用webpack.DefinePlugin设置环境变量，自动区分domain.js中的api选择
+>* 使用webpack.DllReferencePlugin 和 webpack.DllPlugin 设置资源库构建，加快打包速度和拆分bundle

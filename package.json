@@ -1,11 +1,12 @@
 {
   "name": "reactSPAScaffold",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --config ./config/webpack.dev.config.js",
-    "prod": "cross-env NODE_ENV='\"production\"' rm -rf ./dist && webpack --config ./config/webpack.prod.config.js",
-    "test": "jest --config ./config/jest.config.js"
+    "prod": "cross-env NODE_ENV='\"production\"' rm -rf ./dist && webpack --config ./config/webpack.prod.config.js && cp -a ./config/vendor ./dist",
+    "test": "jest --config ./config/jest.config.js",
+    "dll":"cross-env NODE_ENV='\"production\"' rm -rf ./config/vendor && rm -rf ./config/dll && webpack -p --progress --config ./config/webpack.vendor.config.js"
   },
   "repository": {
     "type": "git",

@@ -3,7 +3,7 @@
 * @Author: liyunjiao
 * @Date:   2018-05-14 15:45:20
 * @Last Modified by:   liyunjiao2048@163.com
-* @Last Modified time: 2019-04-15 15:11:17
+* @Last Modified time: 2019-11-20 14:28:07
 */
 
 // 当我们配置组件异步加载的时候，webpack会自动将异步加载的组件单独打包成js文件
@@ -15,14 +15,12 @@ var webpack = require('webpack');
 var htmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+var manifest = require('./dll/vendor-manifest.json');
 module.exports = {
     devtool: false,
     mode:'production',
     entry: {
-        main: path.join(__dirname, '../src/entry.js'),
-        // vendorReact: ['react','react-dom'],
-        // vendorRedux:['redux','react-router-redux','react-redux','redux-thunk','redux-promise'],
-        // vendorRouter:['react-router','react-router-dom']
+        main: path.join(__dirname, '../src/entry.js')
     },
     output: {
         path: path.resolve(__dirname, '../dist/'),
@@ -34,9 +32,19 @@ module.exports = {
             title: 'hehe',
             template: path.join(__dirname, '../index.html'),
             filename: './index.html',
-            chunks:['main','vendorReact','vendorRedux','vendorRouter']
+            chunks:['main', 'vendor', 'manifest']
         }),
-        new ExtractTextPlugin("css/less.[chunkhash:8].css"),
+       new ExtractTextPlugin({
+            filename: 'css/less.[chunkhash:8].css', 
+            disable: false, 
+            allChunks: true
+        }),
+        new webpack.DefinePlugin({
+            'CLIENT_ENV':JSON.stringify('prod')
+        }),
+        new webpack.DllReferencePlugin({
+            manifest,
+        }),
         new BundleAnalyzerPlugin()
     ],
     resolve: {
@@ -44,6 +52,9 @@ module.exports = {
         alias: {
             Components: path.resolve(__dirname, '../src/components/')
         }
+    },
+    externals:{
+        'BMap':'BMap' // 使用百度地图api
     },
     optimization: {
         runtimeChunk: {
@@ -57,7 +68,10 @@ module.exports = {
                     chunks: "all"
                 }
             }
-        }
+        },
+        // namedModules: true,
+        // namedChunks: true,
+        minimize: true
     },
     module: {
         rules: [

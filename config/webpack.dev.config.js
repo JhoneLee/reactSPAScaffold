@@ -3,7 +3,7 @@
 * @Author: liyunjiao
 * @Date:   2018-05-14 15:43:21
 * @Last Modified by:   liyunjiao2048@163.com
-* @Last Modified time: 2018-11-23 11:42:28
+* @Last Modified time: 2019-11-20 14:21:12
 */
 
 var path = require('path');
@@ -34,6 +34,9 @@ module.exports = {
             title: 'hehe',
             template: path.join(__dirname, '../index.html'),
             filename: './index.html'
+        }),
+        new webpack.DefinePlugin({
+            'CLIENT_ENV':JSON.stringify('dev')
         })
     ],
     resolve: {
