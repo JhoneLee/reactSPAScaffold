@@ -3,7 +3,7 @@
 * @Author: liyunjiao
 * @Date:   2018-05-14 15:43:21
 * @Last Modified by:   liyunjiao2048@163.com
-* @Last Modified time: 2019-12-18 10:41:30
+* @Last Modified time: 2019-12-20 14:12:16
 */
 
 var path = require('path');
@@ -17,6 +17,10 @@ module.exports = {
             'react-hot-loader/patch',
             // path.join(__dirname, '../mock/index.js'), 需要mock数据则添加此项，使用mockjs制作假数据
             path.join(__dirname, '../src/entry.js')
+        ],
+        testMain: [
+            'react-hot-loader/patch',
+            path.join(__dirname,'../src/entry-test.js')
         ]
     },
     output: {
@@ -32,7 +36,13 @@ module.exports = {
     plugins: [
         new htmlWebpackPlugin({
             template: path.join(__dirname, '../index-dev.html'),
-            filename: './index.html'
+            filename: './index.html',
+            chunks: ['main']
+        }),
+        new htmlWebpackPlugin({
+            template: path.join(__dirname, '../index-test.html'),
+            filename: './index-test.html',
+            chunks: ['testMain']
         }),
         new webpack.DefinePlugin({
             'CLIENT_ENV':JSON.stringify('dev')

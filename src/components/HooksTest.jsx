@@ -1,7 +1,12 @@
-import React,{useState,useEffect,memo,useCallback,useMemo} from 'react';
+import React,{useState,useEffect,memo,useCallback,useMemo,useContext} from 'react';
+import MyContext from '../common/context';
+
 const HooksTestSon = ({...props})=>{
-    console.log('子组件HooksTestSon被渲染')
+    console.log('子组件HooksTestSon被渲染');
+    const context = useContext(MyContext);
+    console.log('xxxxxxxxxxxxxxx',MyContext);
     let {count} = props;
+    console.log('子组件通过useContext获取全局数据:',context);
     return (<h1>HooksTest子组件,渲染只进行一次，除非count发生改变:{count}</h1>);
 }
 // 使用memo封装的子组件只会在props未改变时渲染一次
